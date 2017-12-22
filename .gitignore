@@ -34,3 +34,4 @@ src/main/resources/static/a.html
 src/main/resources/static/aa.html
 src/main/resources/generatorConfig.xml
 src/main/resources/static/wx/pay/a.html
+/out/*
