@@ -1,0 +1,36 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+traget/
+mvnw
+mvnw.cmd
+
+
+# java test
+/src/test/*
+/src/main/resources/config/dev/logback.xml
+src/main/resources/static/a.html
+src/main/resources/static/aa.html
+src/main/resources/generatorConfig.xml
+src/main/resources/static/wx/pay/a.html
