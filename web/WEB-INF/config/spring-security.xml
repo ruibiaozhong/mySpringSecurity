@@ -10,7 +10,7 @@
     <security:http security="none" pattern="/login.jsp"/>
     <security:http auto-config="true">
         <security:form-login login-page="/login.jsp"
-            login-processing-url="/login.do" username-parameter="username" password-parameter="password"/>
+            login-processing-url="/login" username-parameter="username" password-parameter="password" default-target-url="/world" always-use-default-target="true"/>
         <!--<security:intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
         <security:intercept-url pattern="/**" access="ROLE_USER"/>
     </security:http>
