@@ -7,22 +7,45 @@
           http://www.springframework.org/schema/security
           http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-    <security:http security="none" pattern="/login.jsp"/>
-    <security:http auto-config="true">
-        <security:form-login login-page="/login.jsp"
-            login-processing-url="/login" username-parameter="username" password-parameter="password" default-target-url="/world" always-use-default-target="true"/>
+
+    <bean id="authenticationSuccessHandler" class="com.ruibiaozhong.handler.AuthenticationSuccessHandlerImpl"></bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <!-- 将自定义的放在 Spring Security 内置的之前 -->
+                <value>classpath:messages</value>
+                <value>classpath:org/springframework/security/messages</value>
+            </list>
+        </property>
+    </bean>
+
+    <security:http security="none" pattern="/login.jsp" >
+    <security:http auto-config="true" >
+        <!--<security:http-basic />-->
+        <!--
+            default-target-url="/world" always-use-default-target="true"
+            authentication-success-handler-ref="authenticationSuccessHandler"
+        -->
+        <security:form-login login-page="/login.jsp" login-processing-url="/login"
+             username-parameter="username" password-parameter="password" />
         <!--<security:intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
-        <security:intercept-url pattern="/**" access="ROLE_USER"/>
+        <security:intercept-url pattern="/**" access="ROLE_USER" />
+
     </security:http>
 
-    <security:authentication-manager>
-        <security:authentication-provider>
+    <security:authentication-manager >
+        <security:authentication-provider >
+            <!--<security:password-encoder hash="md5" base64="true"/>-->
             <security:user-service>
                 <security:user name="user" password="user" authorities="ROLE_USER"/>
                 <security:user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN"/>
             </security:user-service>
+            <security:user-service properties="/WEB-INF/config/users.properties" />
         </security:authentication-provider>
     </security:authentication-manager>
+
+
 
 
 
